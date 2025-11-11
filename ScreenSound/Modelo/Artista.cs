@@ -31,6 +31,6 @@ internal class Artista
 
     public override string ToString()
     {
-        return $"   Id: {this.Id}\n    Nome: {this.Nome}\n    Foto de Perfil: {this.FotoPerfil}\n    Bio: {this.Bio}";
+        return $"    Id: {this.Id}\n    Nome: {this.Nome}\n    Foto de Perfil: {this.FotoPerfil}\n    Bio: {this.Bio}";
     }
 }

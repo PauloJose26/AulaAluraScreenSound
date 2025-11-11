@@ -1,5 +1,27 @@
-﻿using ScreenSound.Menu;
+﻿using ScreenSound.Banco;
+using ScreenSound.Menu;
 using ScreenSound.Modelo;
+
+try
+{
+    var artistaDAL = new ArtistaDAL();
+    //artistaDAL.Adicionar(new Artista("Link Park", "Bio Link Park"));
+    //var artista = artistaDAL.BuscarArtista(2);
+    //artistaDAL.Atualizar(new("Evanescence", "Bio Evanescence") { Id = 1, FotoPerfil = "Foto do Perfil" });
+    //artistaDAL.Deletar(artista);
+    var listaArtista = artistaDAL.Listar();
+
+    foreach( var art in listaArtista)
+    {
+        Console.WriteLine(art);
+    }
+}
+catch(Exception ex)
+{
+    Console.WriteLine(ex.ToString());
+}
+
+return;
 
 var artistas = new List<Artista>();
 string opcao;
@@ -22,7 +44,7 @@ void ExibirOpcoesDoMenu()
     {
         ExibirLogo();
 
-        Console.WriteLine("\n1: Registrar um artista;");
+        Console.WriteLine("1: Registrar um artista;");
         Console.WriteLine("2: Registrar a música de um artista;");
         Console.WriteLine("3: Exibir todos os artista");
         Console.WriteLine("4: Exibir todas as músicas de um artista");
@@ -56,5 +78,5 @@ void ExibirLogo()
 ██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
 ╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
 ");
-    Console.WriteLine("Boas vindas ao Screen Sound 3.0!");
+    Console.WriteLine("Boas vindas ao Screen Sound 3.0!\n");
 }
