@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using ScreenSound.Modelo;
+﻿using ScreenSound.Modelo;
 
 namespace ScreenSound.Banco;
 
@@ -12,10 +11,7 @@ internal class ArtistaDAL
         this.context = context;
     }
 
-    public IEnumerable<Artista> Listar()
-    {
-        return context.Artistas.ToList();
-    }
+    public IEnumerable<Artista> Listar() => context.Artistas.ToList();
 
     public void Adicionar(Artista artista)
     {
@@ -28,6 +24,7 @@ internal class ArtistaDAL
         context.Artistas.Update(artista);
         context.SaveChanges();
     }
+
     public void Deletar(Artista artista)
     {
         context.Artistas.Remove(artista);

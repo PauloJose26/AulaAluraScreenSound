@@ -32,6 +32,7 @@ void ExibirOpcoesDoMenu()
 
         Console.Write("\nDigite uma opção: ");
         opcao = Console.ReadLine()!;
+        Console.Clear();
 
         var _ = int.TryParse(opcao, out opcaoMenu);
         if (opcoes.TryGetValue(opcaoMenu, out Menu? menu))
@@ -40,7 +41,6 @@ void ExibirOpcoesDoMenu()
         }
         else
         {
-            Console.Clear();
             Console.WriteLine("Opção inválida");
             Console.ReadKey();
             Console.Clear();

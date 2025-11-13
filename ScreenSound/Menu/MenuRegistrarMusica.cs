@@ -23,7 +23,7 @@ internal class MenuRegistrarMusica: Menu
         }
 
         Console.Write("\nDigite o nome da música: ");
-        string nomeMusica = Console.ReadLine()!;
+        var nomeMusica = Console.ReadLine()!;
         var musica = new Musica(nomeMusica);
         artista.AdionarMusica(musica);
 
