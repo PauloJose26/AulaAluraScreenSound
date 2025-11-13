@@ -1,12 +1,13 @@
-﻿using ScreenSound.Modelo;
+﻿using ScreenSound.Banco;
+using ScreenSound.Modelo;
 
 namespace ScreenSound.Menu;
 
 internal class MenuSair: Menu
 {
-    public override void Executar(List<Artista> artistas)
+    public override void Executar(ArtistaDAL artistaDAL)
     {
-        base.Executar(artistas);
+        base.Executar(artistaDAL);
         Console.WriteLine("\nAté Breve!!");
     }
 }

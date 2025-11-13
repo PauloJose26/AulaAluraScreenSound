@@ -1,31 +1,13 @@
 ﻿using ScreenSound.Banco;
 using ScreenSound.Menu;
-using ScreenSound.Modelo;
-
-try
-{
-    var context = new ScreenSoundContext();
-    var artistaDAL = new ArtistaDAL(context);
 
 
-    var listaArtista = artistaDAL.Listar();
-    foreach( var art in listaArtista)
-    {
-        Console.WriteLine(art);
-    }
-}
-catch(Exception ex)
-{
-    Console.WriteLine(ex.ToString());
-}
-
-return;
-
-var artistas = new List<Artista>();
+var context = new ScreenSoundContext();
+var artistaDAL = new ArtistaDAL(context);
 string opcao;
 int opcaoMenu;
 
-Dictionary<int, Menu> opcoes = new()
+var opcoes = new Dictionary<int, Menu>()
 {
     { 1, new MenuRegistrarArtista() },
     { 2, new MenuRegistrarMusica() },
@@ -34,8 +16,8 @@ Dictionary<int, Menu> opcoes = new()
     { -1, new MenuSair() },
 };
 
-ExibirOpcoesDoMenu();
 
+ExibirOpcoesDoMenu();
 void ExibirOpcoesDoMenu()
 {
     do
@@ -54,7 +36,7 @@ void ExibirOpcoesDoMenu()
         var _ = int.TryParse(opcao, out opcaoMenu);
         if (opcoes.TryGetValue(opcaoMenu, out Menu? menu))
         {
-            menu.Executar(artistas);
+            menu.Executar(artistaDAL);
         }
         else
         {

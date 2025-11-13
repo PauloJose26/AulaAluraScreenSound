@@ -34,25 +34,8 @@ internal class ArtistaDAL
         context.SaveChanges();
     }
 
-    /*
-    public Artista BuscarArtista(int id)
+    public Artista? BuscarPorNome(string nome)
     {
-        using var connection = new ScreenSoundContext().ObterConexao();
-        connection.Open();
-
-        var sql = "SELECT * FROM Artistas WHERE Id = @id";
-        var command = new SqlCommand(sql, connection);
-
-        command.Parameters.AddWithValue("@id", id);
-        using SqlDataReader dataReader = command.ExecuteReader();
-
-        dataReader.Read();
-        var nomeArtista = Convert.ToString(dataReader["Nome"])!;
-        var bioArtista = Convert.ToString(dataReader["Bio"])!;
-        var fotoPerfilArtista = Convert.ToString(dataReader["FotoPerfil"])!;
-        var idArtista = Convert.ToInt32(dataReader["Id"]);
-
-        return new Artista(nomeArtista, bioArtista) { Id = idArtista, FotoPerfil = fotoPerfilArtista };
+        return context.Artistas.FirstOrDefault(artista => artista.Nome.Equals(nome));
     }
-    */
 }

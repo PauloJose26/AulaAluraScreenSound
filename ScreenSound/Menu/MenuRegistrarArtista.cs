@@ -1,12 +1,13 @@
-﻿using ScreenSound.Modelo;
+﻿using ScreenSound.Banco;
+using ScreenSound.Modelo;
 
 namespace ScreenSound.Menu;
 
 internal class MenuRegistrarArtista: Menu
 {
-    public override void Executar(List<Artista> artistas)
+    public override void Executar(ArtistaDAL artistaDAL)
     {
-        base.Executar(artistas);
+        base.Executar(artistaDAL);
         this.ExibirTituloDaOpcao("Registro de artistas");
 
         Console.Write("\nDigite o nome do artista: ");
@@ -14,13 +15,11 @@ internal class MenuRegistrarArtista: Menu
         Console.Write("Digite a Bio do artista: ");
         var bio = Console.ReadLine()!;
         var artista = new Artista(nome, bio);
-        artistas.Add(artista);
+        artistaDAL.Adicionar(artista);
 
         Console.WriteLine("\nArtista Cadastrado\n");
         Console.WriteLine(artista);
 
-        Console.Write("\nDigite qualquer tecla para sair");
-        Console.ReadKey();
-        Console.Clear();
+        this.Continuar();
     }
 }

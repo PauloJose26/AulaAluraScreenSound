@@ -1,20 +1,18 @@
-﻿using ScreenSound.Modelo;
+﻿using ScreenSound.Banco;
 
 namespace ScreenSound.Menu;
 
 internal class MenuMostrarArtistas: Menu
 {
-    public override void Executar(List<Artista> artistas)
+    public override void Executar(ArtistaDAL artistaDAL)
     {
-        base.Executar(artistas);
+        base.Executar(artistaDAL);
         this.ExibirTituloDaOpcao("Lista de Artistas");
 
-        foreach(var artista in artistas) {
+        foreach(var artista in artistaDAL.Listar()) {
             Console.WriteLine(artista);
         }
 
-        Console.Write("\nDigite qualquer tecla para sair");
-        Console.ReadKey();
-        Console.Clear();
+        this.Continuar();
     }
 }
