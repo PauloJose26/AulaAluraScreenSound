@@ -31,8 +31,5 @@ internal class ArtistaDAL
         context.SaveChanges();
     }
 
-    public Artista? BuscarPorNome(string nome)
-    {
-        return context.Artistas.FirstOrDefault(artista => artista.Nome.Equals(nome));
-    }
+    public Artista? BuscarPorNome(string nome) => context.Artistas.FirstOrDefault(artista => artista.Nome.Equals(nome));
 }

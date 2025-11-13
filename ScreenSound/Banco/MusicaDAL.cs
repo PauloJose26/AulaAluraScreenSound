@@ -31,8 +31,5 @@ internal class MusicaDAL
         context.SaveChanges();
     }
 
-    public Musica? BuscarPorNome(string nome)
-    {
-        return context.Musicas.FirstOrDefault(musica => musica.Nome.Equals(nome));
-    }
+    public Musica? BuscarPorNome(string nome) => context.Musicas.FirstOrDefault(musica => musica.Nome.Equals(nome));
 }
