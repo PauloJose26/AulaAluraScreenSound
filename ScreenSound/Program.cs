@@ -1,9 +1,10 @@
 ﻿using ScreenSound.Banco;
 using ScreenSound.Menu;
+using ScreenSound.Modelo;
 
 
 var context = new ScreenSoundContext();
-var artistaDAL = new ArtistaDAL(context);
+var artistaDAL = new DAL<Artista>(context);
 string opcao;
 int opcaoMenu;
 

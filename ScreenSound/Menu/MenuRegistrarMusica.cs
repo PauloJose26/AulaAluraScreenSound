@@ -5,7 +5,7 @@ namespace ScreenSound.Menu;
 
 internal class MenuRegistrarMusica: Menu
 {
-    public override void Executar(ArtistaDAL artistaDAL)
+    public override void Executar(DAL<Artista> artistaDAL)
     {
         base.Executar(artistaDAL);
         this.ExibirTituloDaOpcao("Registro de Músicas");
@@ -14,7 +14,7 @@ internal class MenuRegistrarMusica: Menu
         var nome = Console.ReadLine()!;
         Console.Clear();
 
-        var artista = artistaDAL.BuscarPorNome(nome);
+        var artista = artistaDAL.RecuperarPor(art => art.Nome.Equals(nome));
         if (artista is null)
         {
             Console.WriteLine($"\nArtista com o nome {nome} não foi encontrado");
