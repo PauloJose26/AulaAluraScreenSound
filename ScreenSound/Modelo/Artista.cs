@@ -1,8 +1,8 @@
 ﻿namespace ScreenSound.Modelo;
 
-internal class Artista
+public class Artista
 {
-    public ICollection<Musica> Musicas {  get; set; } = new List<Musica>();
+    public virtual ICollection<Musica> Musicas {  get; set; } = new List<Musica>();
     public int Id { get; set; }
     public string Nome { get; set; }
     public string FotoPerfil { get; set; }
@@ -25,7 +25,7 @@ internal class Artista
         Console.WriteLine($"Discografia do artista {this.Nome}");
         foreach(var musica in this.Musicas)
         {
-            Console.WriteLine($"Música: {musica.Nome}");
+            Console.WriteLine($"Música: {musica.Nome} - Ano de Lançamento: {musica.AnoLancamento}");
         }
     }
 

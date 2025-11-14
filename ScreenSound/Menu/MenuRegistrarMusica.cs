@@ -10,22 +10,25 @@ internal class MenuRegistrarMusica: Menu
         base.Executar(artistaDAL);
         this.ExibirTituloDaOpcao("Registro de Músicas");
 
-        Console.Write("\nDigite o nome do artista: ");
-        var nome = Console.ReadLine()!;
-        Console.Clear();
-
-        var artista = artistaDAL.RecuperarPor(art => art.Nome.Equals(nome));
-        if (artista is null)
+        if (!this.BuscarArtista(artistaDAL, out var artista))
         {
-            Console.WriteLine($"\nArtista com o nome {nome} não foi encontrado");
-            this.Continuar();
             return;
         }
 
         Console.Write("\nDigite o nome da música: ");
         var nomeMusica = Console.ReadLine()!;
-        var musica = new Musica(nomeMusica);
+        Console.Write("Digite o ano de lançamento da música: ");
+        var anoLancamento = Console.ReadLine()!;
+        if(!int.TryParse(anoLancamento, out var anoLancamentoMusica))
+        {
+            Console.WriteLine("Ano de lançamento inválido!!");
+            this.Continuar();
+            return;
+        }
+
+        var musica = new Musica(nomeMusica) {AnoLancamento = anoLancamentoMusica};
         artista.AdionarMusica(musica);
+        artistaDAL.Atualizar(artista);
 
         Console.WriteLine("\nMusica Cadastrada\n");
         Console.WriteLine(musica);

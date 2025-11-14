@@ -20,4 +20,21 @@ internal class Menu
         Console.ReadKey();
         Console.Clear();
     }
+
+    public bool BuscarArtista(DAL<Artista> artistaDAL, out Artista artista)
+    {
+        Console.Write("\nDigite o nome do artista: ");
+        var nome = Console.ReadLine()!;
+        Console.Clear();
+
+        artista = artistaDAL.RecuperarPor(art => art.Nome.Equals(nome))!;
+        if (artista is null)
+        {
+            Console.WriteLine($"\nArtista com o nome {nome} não foi encontrado");
+            this.Continuar();
+            return false;
+        }
+
+        return true;
+    }
 }

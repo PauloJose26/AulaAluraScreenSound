@@ -1,11 +1,11 @@
 ﻿namespace ScreenSound.Modelo;
 
-internal class Musica
+public class Musica
 {
     public int Id { get; set; }
     public string Nome { get; set; }
     public int? AnoLancamento { get; set; }
-    public Artista? Artista { get; set; }
+    public virtual Artista? Artista { get; set; }
 
     public Musica(string nome)
     {

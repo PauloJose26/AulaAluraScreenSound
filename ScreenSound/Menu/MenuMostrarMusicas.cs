@@ -10,15 +10,8 @@ internal class MenuMostrarMusicas: Menu
         base.Executar(artistaDAL);
         this.ExibirTituloDaOpcao("Exibir detalhes de um artista");
 
-        Console.Write("\nDigite o nome do artista: ");
-        var nome = Console.ReadLine()!;
-        Console.Clear();
-
-        var artista = artistaDAL.RecuperarPor(art => art.Nome.Equals(nome));
-        if (artista is null)
+        if (!this.BuscarArtista(artistaDAL, out var artista))
         {
-            Console.WriteLine($"\nArtista com o nome {nome} não foi encontrado");
-            this.Continuar();
             return;
         }
 
