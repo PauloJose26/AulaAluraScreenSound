@@ -4,6 +4,8 @@ internal class Musica
 {
     public int Id { get; set; }
     public string Nome { get; set; }
+    public int? AnoLancamento { get; set; }
+    public Artista? Artista { get; set; }
 
     public Musica(string nome)
     {
@@ -17,6 +19,6 @@ internal class Musica
 
     public override string ToString()
     {
-        return $"   Id: {this.Id}\n   Nome: {this.Nome}";
+        return $"   Id: {this.Id}\n   Nome: {this.Nome}\n   Ano de Lançamento: {this.AnoLancamento}";
     }
 }
