@@ -1,6 +1,4 @@
-﻿
-
-namespace ScreenSound.Banco;
+﻿namespace ScreenSound.Banco;
 
 internal class DAL<T> where T : class
 {
@@ -32,4 +30,6 @@ internal class DAL<T> where T : class
     }
 
     public T? RecuperarPor(Func<T, bool> condicao) => context.Set<T>().FirstOrDefault(condicao);
+
+    public IEnumerable<T> ListarPor(Func<T, bool> condicao) => context.Set<T>().Where(condicao);
 }

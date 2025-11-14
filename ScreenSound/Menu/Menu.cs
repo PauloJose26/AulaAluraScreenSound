@@ -12,7 +12,7 @@ internal class Menu
         Console.WriteLine(new string('*', titulo.Length));
     }
 
-    public virtual void Executar(DAL<Artista> artistaDAL) => Console.Clear();
+    public virtual void Executar(DAL<Artista> artistaDAL, DAL<Musica> musicaDAL) => Console.Clear();
 
     public void Continuar()
     {

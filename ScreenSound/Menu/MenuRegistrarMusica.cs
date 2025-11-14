@@ -5,9 +5,9 @@ namespace ScreenSound.Menu;
 
 internal class MenuRegistrarMusica: Menu
 {
-    public override void Executar(DAL<Artista> artistaDAL)
+    public override void Executar(DAL<Artista> artistaDAL, DAL<Musica> musicaDAL)
     {
-        base.Executar(artistaDAL);
+        base.Executar(artistaDAL, musicaDAL);
         this.ExibirTituloDaOpcao("Registro de Músicas");
 
         if (!this.BuscarArtista(artistaDAL, out var artista))
