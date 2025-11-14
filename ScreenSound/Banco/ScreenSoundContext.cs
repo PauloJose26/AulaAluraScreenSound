@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ScreenSound.Modelo;
+using ScreenSound.Shared.Modelo;
 
 namespace ScreenSound.Banco;
 

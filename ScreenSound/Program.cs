@@ -1,6 +1,6 @@
 ﻿using ScreenSound.Banco;
 using ScreenSound.Menu;
-using ScreenSound.Modelo;
+using ScreenSound.Shared.Modelo;
 
 
 var context = new ScreenSoundContext();
