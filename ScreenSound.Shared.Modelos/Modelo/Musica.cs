@@ -9,9 +9,10 @@ public class Musica
 
     public Musica() { }
 
-    public Musica(string nome)
+    public Musica(string nome, int? anoLancamento)
     {
         this.Nome = nome;
+        this.AnoLancamento = anoLancamento;
     }
 
     public void FichaTecnica()

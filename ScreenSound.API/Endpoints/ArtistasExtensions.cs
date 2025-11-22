@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ScreenSound.API.Requests;
+using ScreenSound.API.Response;
 using ScreenSound.Shared.Banco;
 using ScreenSound.Shared.Modelo;
 
@@ -17,31 +19,28 @@ public static class ArtistasExtensions
         {
             var artista = dal.RecuperarPor(a => a.Nome.ToUpper().Equals(nome.ToUpper()));
             if (artista is null)
-            {
                 return Results.NotFound();
-            }
 
             return Results.Ok(artista);
         });
 
-        app.MapPost("/artistas", ([FromServices] DAL<Artista> dal, [FromBody] Artista artista) => {
-            artista.FotoPerfil = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png";
+        app.MapPost("/artistas", ([FromServices] DAL<Artista> dal, [FromBody] ArtistaRequest artistaRequest) => {
+            var artista = new Artista(artistaRequest.nome, artistaRequest.bio);
             dal.Adicionar(artista);
 
             return Results.Created();
         });
 
-        app.MapPut("/artistas", ([FromServices] DAL<Artista> dal, [FromBody] Artista artistaAtualizar) =>
+        app.MapPut("/artistas", ([FromServices] DAL<Artista> dal, [FromBody] ArtistaRequestEdit artistaRequestEdit) =>
         {
-            var artistaRecuperado = dal.RecuperarPor(a => a.Id.Equals(artistaAtualizar.Id));
+            var artistaRecuperado = dal.RecuperarPor(a => a.Id.Equals(artistaRequestEdit.id));
             if (artistaRecuperado is null)
-            {
                 return Results.NotFound();
-            }
 
-            artistaRecuperado.Nome = artistaAtualizar.Nome;
-            artistaRecuperado.Bio = artistaAtualizar.Bio;
-            artistaRecuperado.FotoPerfil = artistaAtualizar.FotoPerfil;
+            if(artistaRequestEdit.nome is not null)
+                artistaRecuperado.Nome = artistaRequestEdit.nome;
+            if(artistaRequestEdit.bio is not null)
+                artistaRecuperado.Bio = artistaRequestEdit.bio;
             dal.Atualizar(artistaRecuperado);
 
             return Results.Ok(artistaRecuperado);
@@ -50,12 +49,20 @@ public static class ArtistasExtensions
         app.MapDelete("/artistas/{id}", ([FromServices] DAL<Artista> dal, int id) => {
             var artista = dal.RecuperarPor(a => a.Id.Equals(id));
             if (artista is null)
-            {
                 return Results.NotFound();
-            }
 
             dal.Deletar(artista);
             return Results.NoContent();
         });
+    }
+
+    private static ArtistaResponse EntityToResponse(Artista artista)
+    {
+        return new ArtistaResponse(artista.Id, artista.Nome, artista.Bio, artista.FotoPerfil);
+    }
+
+    private static ICollection<ArtistaResponse> EntityListToResponseList(IEnumerable<Artista> listaDeArtistas)
+    {
+        return listaDeArtistas.Select(a => EntityToResponse(a)).ToList();
     }
 }
