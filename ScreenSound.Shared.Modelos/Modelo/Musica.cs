@@ -7,6 +7,8 @@ public class Musica
     public int? AnoLancamento { get; set; }
     public virtual Artista? Artista { get; set; }
 
+    public Musica() { }
+
     public Musica(string nome)
     {
         this.Nome = nome;

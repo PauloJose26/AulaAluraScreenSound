@@ -8,6 +8,8 @@ public class Artista
     public string FotoPerfil { get; set; }
     public string Bio {  get; set; }
 
+    public Artista() { }
+
     public Artista(string nome, string bio)
     {
         this.Nome = nome;
